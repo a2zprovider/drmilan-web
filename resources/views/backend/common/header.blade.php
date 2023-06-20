@@ -169,6 +169,12 @@ $setting = App\Models\Setting::first();
                             <div>Notification</div>
                         </a>
                     </li>   
+                    <li class="menu-item @if(Request::routeIs('admin.faq.index')) active @endif">
+                        <a href="{{ route('admin.faq.index') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-copy"></i>
+                            <div>Faqs</div>
+                        </a>
+                    </li>   
                     <li class="menu-header small text-uppercase">
                         <span class="menu-header-text">Enquiry</span>
                     </li>   

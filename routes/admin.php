@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth:admin'], 'namespace' => 'admin', 'as' => 'a
     Route::post('/inquiry/deleteAll', 'InquiryController@deleteAll')->name('inquiry.deleteAll');
     Route::post('/doctor/deleteAll', 'DoctorController@deleteAll')->name('doctor.deleteAll');
     Route::post('/notification/deleteAll', 'NotificationController@deleteAll')->name('notification.deleteAll');
+    Route::post('/faq/deleteAll', 'FaqController@deleteAll')->name('faq.deleteAll');
 
     // Doctor
     Route::post('/doctor/image', 'DoctorController@image_upload')->name('doctor.image');
@@ -35,6 +36,7 @@ Route::group(['middleware' => ['auth:admin'], 'namespace' => 'admin', 'as' => 'a
     Route::resources([
         'doctor' => 'DoctorController',
         'notification' => 'NotificationController',
+        'faq' => 'FaqController',
         'inquiry' => 'InquiryController',
     ]);
 

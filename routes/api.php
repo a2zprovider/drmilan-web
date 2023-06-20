@@ -23,7 +23,14 @@ Route::group(['as' => 'api.'], function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
+
     Route::get('/user', 'AuthController@me');
+
+    Route::get('/doctors', 'HomeController@doctors');
+    Route::get('/category', 'HomeController@category');
+    Route::get('/faqs', 'HomeController@faqs');
+    Route::get('/notifications', 'HomeController@notifications');
+
     Route::get('/setting', 'HomeController@setting');
     Route::get('/logout', 'LoginController@logout');
 });
