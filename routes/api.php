@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,4 +32,16 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/setting', 'HomeController@setting');
     Route::get('/logout', 'LoginController@logout');
+    Route::post('/help', 'HomeController@help');
+
+    Route::get('/reviews', 'HomeController@reviews');
+    Route::post('/review/add', 'HomeController@review');
+
+    Route::post('/user/edit', 'HomeController@useredit');
+
+    Route::post('/bookappointment', 'HomeController@bookappointment');
+    Route::post('/appointment/update', 'HomeController@updateappointment');
+    Route::post('/appointment/medicine', 'HomeController@medicine');
+    Route::get('/appointments', 'HomeController@appointments');
+    Route::get('/events', 'HomeController@events');
 });

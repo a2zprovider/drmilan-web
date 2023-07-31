@@ -22,17 +22,17 @@ class LoginController extends Controller
                 'errors'    => $validator->errors()
             ];
         } else {
-
             $user_exists = User::where('mobile', $request->mobile)->exists();
             if ($user_exists) {
                 $user = User::where('mobile', $request->mobile)->first();
                 if ($user->status == 'true') {
                     if ($request->otp) {
                         if ($user->otp == $request->otp) {
-                            Auth::login($user);     
+                            Auth::login($user);
                             $user = Auth::user();
 
                             $input = [
+                                'name'          => @request('name') ? request('name') : request('mobile'),
                                 'device_type'   => request('device_type') && request('device_type') != '' ? request('device_type') : null,
                                 'device_id'     => request('device_id') && request('device_id') != '' ? request('device_id') : null,
                                 'fcm_id'        => request('fcm_id') && request('fcm_id') != '' ? request('fcm_id') : null,
@@ -74,7 +74,7 @@ class LoginController extends Controller
                 }
             } else {
                 $input = [
-                    'name' => $request->mobile,
+                    'name' => $request->name ? $request->name : $request->mobile,
                     'mobile' => $request->mobile,
                     'role'  => 'user',
                 ];

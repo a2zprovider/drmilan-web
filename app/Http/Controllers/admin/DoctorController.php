@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Doctor;
+use App\Models\User;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Str;
@@ -62,48 +63,40 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'title'  => 'required|string',
-            'image'  => 'required'
+            'name'  => 'required|string',
+            'mobile'  => 'required|unique:users',
         ];
 
         $messages = [
-            'record.title'  => 'Please Enter Name.',
-            'image'  => 'Please Select Image'
+            'record.name'  => 'Please Enter Name.',
         ];
 
         $request->validate($rules, $messages);
-
+        // dd($request->all());
         $record           = new Doctor;
-        $input            = $request->except('_token');
+        $input            = $request->except('_token', 'password');
 
         $input['field'] = $request->field ? json_encode($request->field) : '{"name":[],"value":[]}';
 
-        if ($request->hasFile('images')) {
-            $files = $request->file('images');
-            $imgs = [];
-            foreach ($files as $f) {
-                $optimizeImage = Image::make($f);
-                $optimizePath = public_path() . '/images/doctor/imgs/';
-                if (!file_exists($optimizePath)) {
-                    mkdir($optimizePath, 0755, true);
-                }
-                $image = explode(".", $f->getClientOriginalName());
-                $image_name = $image[0];
-                $name = time() . Str::slug($image_name, '-') . '.' . $f->getClientOriginalExtension();
-                $optimizeImage->save($optimizePath . $name, 72);
-                $imgs[] = $name;
-            }
-            $input['images'] = json_encode($imgs);
-        }
-
-        if (@$input['features'] && @$input['features'] != null) {
-            $input['features'] = implode(',', $input['features']);
-        }
-
-        $input['slug']    = $input['slug'] == '' ? Str::slug($input['title'], '-') : Str::slug($input['slug'], '-');
-        // dd($input);
         $record->fill($input);
+
+        $obj = [
+            'name' => $request->name,
+            'mobile' => $request->mobile,
+            'email' => $request->email,
+            'role'  => 'doctor',
+        ];
+        $user = new User();
+        $user->fill($obj);
+        $user->save();
+
+        $record->user_id = $user->id;
+
+        $index = Doctor::max('uid');
+        $index = (int)$index + 1;
+        $record->uid = sprintf("%08d", $index);
         $record->save();
+
         // dd($record);
         if ($record->save()) {
             return redirect(route('admin.doctor.index'))->with('success', 'Success! New record has been added.');
@@ -135,56 +128,32 @@ class DoctorController extends Controller
                 $categoryArr[$pcat->id] = $pcat->title;
             }
         }
-        $availableArr  = [
-            'true' => 'In-Stock',
-            'false' => 'Out-Stock'
-        ];
-        $featureArr  = [
-            'top' => 'Top Doctor',
-            'feature' => 'Feature Doctor',
-            'new' => 'New Arrivals',
-        ];
-
-        $data = compact('page', 'categoryArr', 'doctor', 'availableArr', 'featureArr');
+        $data = compact('page', 'categoryArr', 'doctor');
         return view('backend.inc.doctor.edit', $data);
     }
 
     public function update(Request $request, Doctor $doctor)
     {
+        $rules = [
+            'name'  => 'required|string',
+            'mobile'  => 'required|unique:users,mobile,' . $doctor->user_id,
+        ];
+
+        $messages = [
+            'record.name'  => 'Please Enter Name.',
+        ];
+
+        $request->validate($rules, $messages);
         $record     = $doctor;
         $input      = $request->except('_token', '_method');
         $input['field'] = $request->field ? $request->field : '{"name":[],"value":[]}';
 
-        // if ($request->hasFile('images')) {
-        //     $files = $request->file('images');
-        //     $imgs = [];
-        //     // dd(json_decode($page->images));
-        //     foreach (json_decode($doctor->images) as $key => $v) {
-        //         $imgs[] = $v;
-        //     }
-        //     // $imgs = $page->images;
-        //     foreach ($files as $f) {
-        //         $optimizeImage = Image::make($f);
-        //         $optimizePath = public_path() . '/images/doctor/imgs/';
-        //         if (!file_exists($optimizePath)) {
-        //             mkdir($optimizePath, 0755, true);
-        //         }
-        //         $image = explode(".", $f->getClientOriginalName());
-        //         $image_name = $image[0];
-        //         $name = time() . Str::slug($image_name, '-') . '.' . $f->getClientOriginalExtension();
-        //         $optimizeImage->save($optimizePath . $name, 72);
-        //         $imgs[] = $name;
-        //     }
-        //     $input['images'] = $imgs;
-        // }
+        $user = User::find($doctor->user_id);
+        $user->name = $request->name;
+        $user->mobile = $request->mobile;
+        $user->email = $request->email;
+        $user->save();
 
-        if (@$input['features'] && @$input['features'] != null) {
-            $input['features'] = implode(',', $input['features']);
-        } else {
-            $input['features'] = '';
-        }
-
-        $input['slug']    = $input['slug'] == '' ? Str::slug($input['title'], '-') : Str::slug($input['slug'], '-');
         $record->fill($input);
         if ($record->save()) {
             return redirect(route('admin.doctor.index'))->with('success', 'Success! Record has been edited');

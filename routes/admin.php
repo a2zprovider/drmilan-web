@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::group(['middleware' => ['guest:admin'], 'namespace' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/login', 'LoginController@index')->name('login');
     Route::post('/checklogin', 'LoginController@checklogin')->name('checklogin');
@@ -26,6 +27,9 @@ Route::group(['middleware' => ['auth:admin'], 'namespace' => 'admin', 'as' => 'a
     Route::post('/doctor/deleteAll', 'DoctorController@deleteAll')->name('doctor.deleteAll');
     Route::post('/notification/deleteAll', 'NotificationController@deleteAll')->name('notification.deleteAll');
     Route::post('/faq/deleteAll', 'FaqController@deleteAll')->name('faq.deleteAll');
+    Route::post('/event/deleteAll', 'EventController@deleteAll')->name('event.deleteAll');
+    Route::post('/lab/deleteAll', 'LabController@deleteAll')->name('lab.deleteAll');
+    Route::post('/medicine/deleteAll', 'MedicineController@deleteAll')->name('medicine.deleteAll');
 
     // Doctor
     Route::post('/doctor/image', 'DoctorController@image_upload')->name('doctor.image');
@@ -77,6 +81,18 @@ Route::group(['middleware' => ['auth:admin'], 'namespace' => 'admin', 'as' => 'a
     Route::post('/blog/image', 'BlogController@image_upload')->name('blog.image');
     Route::post('/blog/image/detele', 'BlogController@image_delete')->name('blog.image.delete');
 
+    // Event
+    Route::post('/event/image', 'EventController@image_upload')->name('event.image');
+    Route::post('/event/image/detele', 'EventController@image_delete')->name('event.image.delete');
+
+    // Lab
+    Route::post('/lab/image', 'LabController@image_upload')->name('lab.image');
+    Route::post('/lab/image/detele', 'LabController@image_delete')->name('lab.image.delete');
+
+    // Medicine
+    Route::post('/medicine/image', 'MedicineController@image_upload')->name('medicine.image');
+    Route::post('/medicine/image/detele', 'MedicineController@image_delete')->name('medicine.image.delete');
+
     // Page
     Route::post('/page/image', 'PageController@image_upload')->name('page.image');
     Route::post('/page/image/detele', 'PageController@image_delete')->name('page.image.delete');
@@ -119,6 +135,9 @@ Route::group(['middleware' => ['auth:admin'], 'namespace' => 'admin', 'as' => 'a
         'service' => 'ServiceController',
         'galary' => 'GalaryController',
         'review' => 'ReviewController',
+        'event' => 'EventController',
         'user' => 'UserController',
+        'lab' => 'LabController',
+        'medicine' => 'MedicineController',
     ]);
 });

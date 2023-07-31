@@ -91,34 +91,5 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md">
-        <div class="card">
-            <div class="card-body">
-                <div class="row g-3">
-                    <div class="col-12">
-                        <h6 class="fw-semibold">Meta Details</h6>
-                        <hr class="mt-0" />
-                    </div>
-                    <div class="col-md-12 mb-3"> 
-                        {{ Form::label('seo-title', 'Seo Title',['class' => 'form-label']) }}
-                        {{ Form::text('seo_title', '', ['class' => 'form-control bootstrap-maxlength-example', 'placeholder'=>'seo-title', 'id'=>'seo-title', 'maxlength'=>'70', 'required'] )}}
-                        <div class="invalid-feedback"> Please enter seo title. </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        {{ Form::label('seo_keywords', 'Seo Keywords',['class' => 'form-label']) }}
-                        {{ Form::textarea('seo_keywords','', ['class'=>'form-control', 'placeholder'=>'Seo Keywords', 'rows'=>'3' ,'id'=>'seo_keywords', 'required']) }}
-                        <div class="invalid-feedback"> Please enter seo keywords. </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        {{ Form::label('seo_description', 'Seo Description',['class' => 'form-label']) }}
-                        {{ Form::textarea('seo_description','', ['class'=>'form-control bootstrap-maxlength-example', 'placeholder'=>'Seo Description', 'rows'=>'3', 'required', 'maxlength'=>'250', 'id'=>'seo_description']) }}
-                        <div class="invalid-feedback"> Please enter seo description. </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="image-upload-url" data-url="{{ route('admin.notification.image') }}"></div>
 <div class="image-delete-url" data-url="{{ route('admin.notification.image.delete') }}"></div>

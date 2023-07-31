@@ -163,6 +163,24 @@ $setting = App\Models\Setting::first();
                             </li>
                         </ul>
                     </li>
+                    <li class="menu-item @if(Request::routeIs('admin.medicine.index')) active @endif">
+                        <a href="{{ route('admin.medicine.index') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-copy"></i>
+                            <div>Medicine</div>
+                        </a>
+                    </li>
+                    <li class="menu-item @if(Request::routeIs('admin.lab.index')) active @endif">
+                        <a href="{{ route('admin.lab.index') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-copy"></i>
+                            <div>Lab</div>
+                        </a>
+                    </li> 
+                    <li class="menu-item @if(Request::routeIs('admin.event.index')) active @endif">
+                        <a href="{{ route('admin.event.index') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-copy"></i>
+                            <div>Events</div>
+                        </a>
+                    </li> 
                     <li class="menu-item @if(Request::routeIs('admin.notification.index')) active @endif">
                         <a href="{{ route('admin.notification.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-copy"></i>

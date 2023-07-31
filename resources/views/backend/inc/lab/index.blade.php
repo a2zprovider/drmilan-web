@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title','Doctor List')
+@section('title','Lab List')
 @section('style')
 
 <!-- Vendor Styles -->
@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="{{ url('admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
 <link rel="stylesheet" href="{{ url('admin/vendor/libs/datatables-fixedcolumns-bs5/fixedcolumns.bootstrap5.css') }}">
 <link rel="stylesheet" href="{{ url('admin/vendor/libs/datatables-fixedheader-bs5/fixedheader.bootstrap5.css') }}">
+<link rel="stylesheet" href="{{ url('admin/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 <style>
     .dataTables_info {
         padding-left: 20px;
@@ -28,7 +29,6 @@
         margin-bottom: 20px;
     }
 </style>
-
 @endsection
 @section('content')
 
@@ -36,14 +36,15 @@
 <div class="content-wrapper">
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
+
         <div class="mb-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h4 class="fw-bold m-0">
-                    <span class="text-muted fw-light">Doctor /</span> View
+                    <span class="text-muted fw-light">Lab /</span> View
                 </h4>
                 <div>
                     <div class="btn-danger btn" id="delete_record" style="margin-right: 20px;"> Delete </div>
-                    <a href="{{ route('admin.doctor.create') }}" class="btn-primary btn text-white"> Add </a>
+                    <a href="{{ route('admin.lab.create') }}" class="btn-primary btn text-white"> Add </a>
                 </div>
             </div>
         </div>
@@ -77,8 +78,10 @@
                     <tr>
                         <th></th>
                         <th>No</th>
-                        <th>Name</th>
-                        <th>Category</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Address</th>
                         <th width="100px">Action</th>
                     </tr>
                 </thead>
@@ -107,11 +110,11 @@
 <script src="{{ url('admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js') }}"></script>
 <!-- / Data Tables -->
 
-<!-- BEGIN: Page JS-->
+<script src="{{ url('admin/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+<!-- BEGIN: lab JS-->
 <script src="{{ url('admin/js/tables-datatables-extensions.js') }}"></script>
-
-<script src="{{ url('admin/js/ui-modals.js') }}"></script>
-<!-- END: Page JS-->
+<script src="{{ url('admin/js/extended-ui-sweetalert2.js') }}"></script>
+<!-- END: lab JS-->
 
 <script type="text/javascript">
     $(function() {
@@ -120,7 +123,7 @@
             select: true,
             processing: true,
             serverSide: true,
-            ajax: "{{ route('admin.doctor.index') }}",
+            ajax: "{{ route('admin.lab.index') }}",
 
             columns: [{
                     data: 'id',
@@ -132,12 +135,20 @@
                     name: 'id',
                 },
                 {
-                    data: 'name',
-                    name: 'name'
+                    data: 'title',
+                    name: 'title'
                 },
                 {
-                    data: 'category',
-                    name: 'category'
+                    data: 'date',
+                    name: 'date'
+                },
+                {
+                    data: 'time',
+                    name: 'time'
+                },
+                {
+                    data: 'address',
+                    name: 'address'
                 },
                 {
                     data: 'action',
@@ -195,7 +206,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: '{{ route("admin.doctor.deleteAll") }}',
+                            url: '{{ route("admin.lab.deleteAll") }}',
                             type: 'post',
                             data: {
                                 request: 2,
@@ -217,33 +228,10 @@
             }
         });
 
-        // Delete record
-        $('#add_location').click(function() {
-            var ids_arr = [];
-            // Read all checked checkboxes
-            $(".data-table tbody tr.selected").each(function() {
-                var val = $(this).find('input[type=checkbox]').val();
-                ids_arr.push(val);
-            });
-
-            // Check checkbox checked or not
-            if (ids_arr.length > 0) {
-                $('.location_ids').val(ids_arr)
-                $('#basicModal').modal('show');
-            } else {
-                Swal.fire({
-                    title: "Error!",
-                    text: "Please select at least one record!",
-                    icon: "error",
-                })
-            }
-        });
-
-
     });
 
     function handelDelete(id) {
-        var url = "{{ route('admin.doctor.index') }}";
+        var url = "{{ route('admin.lab.index') }}";
         url = url + '/' + id;
         Swal.fire({
             title: "Are you sure?",
