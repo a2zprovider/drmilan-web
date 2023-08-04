@@ -79,7 +79,7 @@
                         <th></th>
                         <th>No</th>
                         <th>Title</th>
-                        <th>Slug</th>
+                        <th>Doctor Count</th>
                         <th width="100px">Action</th>
                     </tr>
                 </thead>
@@ -137,8 +137,8 @@
                     name: 'title'
                 },
                 {
-                    data: 'slug',
-                    name: 'slug'
+                    data: 'doctor_count',
+                    name: 'doctor_count'
                 },
                 {
                     data: 'action',

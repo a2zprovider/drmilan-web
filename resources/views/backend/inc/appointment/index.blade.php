@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title','Help or Suggestions List')
+@section('title','Appointment List')
 @section('style')
 
 <!-- Vendor Styles -->
@@ -40,7 +40,7 @@
         <div class="mb-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h4 class="fw-bold m-0">
-                    <span class="text-muted fw-light">Help or Suggestions /</span> View
+                    <span class="text-muted fw-light">Appointment /</span> View
                 </h4>
                 <div>
                     <div class="btn-danger btn" id="delete_record"> Delete </div>
@@ -78,10 +78,16 @@
                         <th></th>
                         <th>No</th>
                         <th>Name</th>
-                        <th>Email</th>
                         <th>Mobile</th>
-                        <th>Message</th>
+                        <th>Gender</th>
+                        <th>Age</th>
                         <th>Date</th>
+                        <th>Time</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                        <th>Payment Status</th>
+                        <th>Doctor</th>
+                        <th>Created At</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,7 +102,6 @@
 
 @endsection
 @section('script')
-
 
 <!-- Data Tables -->
 <script src="{{ url('admin/vendor/libs/datatables/jquery.dataTables.js') }}"></script>
@@ -122,7 +127,7 @@
             select: true,
             processing: true,
             serverSide: true,
-            ajax: "{{ route('admin.inquiry.index') }}",
+            ajax: "{{ route('admin.appointment.index') }}",
 
             columns: [{
                     data: 'id',
@@ -138,20 +143,44 @@
                     name: 'name'
                 },
                 {
-                    data: 'email',
-                    name: 'email'
-                },
-                {
                     data: 'mobile',
                     name: 'mobile'
+                },
+                {
+                    data: 'gender',
+                    name: 'gender'
+                },
+                {
+                    data: 'age',
+                    name: 'age'
+                },
+                {
+                    data: 'date',
+                    name: 'date'
+                },
+                {
+                    data: 'time',
+                    name: 'time'
                 },
                 {
                     data: 'message',
                     name: 'message'
                 },
                 {
-                    data: 'date',
-                    name: 'date'
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'payment_status',
+                    name: 'payment_status'
+                },
+                {
+                    data: 'doctor',
+                    name: 'doctor'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at'
                 }
             ],
             columnDefs: [{
@@ -202,7 +231,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: '{{ route("admin.inquiry.deleteAll") }}',
+                            url: '{{ route("admin.appointment.deleteAll") }}',
                             type: 'post',
                             data: {
                                 request: 2,
@@ -226,7 +255,7 @@
     });
 
     function handelDelete(id) {
-        var url = "{{ route('admin.inquiry.index') }}";
+        var url = "{{ route('admin.appointment.index') }}";
         url = url + '/' + id;
         Swal.fire({
             title: "Are you sure?",

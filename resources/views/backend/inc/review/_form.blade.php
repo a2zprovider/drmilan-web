@@ -83,6 +83,5 @@
     </div>
 </div>
 
-
 <div class="image-upload-url" data-url="{{ route('admin.review.image') }}"></div>
 <div class="image-delete-url" data-url="{{ route('admin.review.image.delete') }}"></div>

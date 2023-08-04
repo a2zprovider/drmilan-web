@@ -29,7 +29,7 @@
                         <h6 class="fw-semibold">Basic Details</h6>
                         <hr class="mt-0" />
                     </div>
-                    <div class="col-md-12 mb-3">
+                    <div class="col-md-6 mb-3">
                         {{ Form::label('name', 'Name',['class' => 'form-label']) }}
                         {{ Form::text('name', '', ['class' => 'form-control bootstrap-maxlength-example', 'placeholder'=>'Name', 'id'=>'name', 'maxlength'=>'70', 'required'] )}}
                         <div class="invalid-feedback"> Please enter name. </div>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         {{ Form::label('email', 'Email',['class' => 'form-label']) }}
-                        {{ Form::email('email', '', ['class' => 'form-control', 'placeholder'=>'Email', 'id'=>'email', 'required'] )}}
+                        {{ Form::email('email', '', ['class' => 'form-control', 'placeholder'=>'Email', 'id'=>'email'] )}}
                         <div class="invalid-feedback"> Please enter email. </div>
                     </div>
                     <div class="col-md-6 mb-3">

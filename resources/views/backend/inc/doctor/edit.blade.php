@@ -37,7 +37,6 @@
 
         {{ Form::close() }}
 
-
     </div>
     <!-- / Content -->
 
@@ -92,7 +91,7 @@
             e.preventDefault();
             if (x < max_fields) {
                 x++;
-                $(wrapper).append(`<div class="row mt-3"><div class="col-md-5"> <label class="form-label">Label</label><input type="text" name="field[name][]" class="form-control"  placeholder="Label" required><div class="invalid-feedback"> Please enter field name. </div></div><div class="col-md-5"> <label class="form-label">Value</label><input type="text" name="field[value][]" required class="form-control"  placeholder="Value"><div class="invalid-feedback"> Please enter field value. </div></div><div class="col-md-2 mt-1"><a href="#" class="delete btn btn-label-danger mt-4"><i class="bx bx-x"></i><span class="align-middle">Delete</span></a></div></div>`); //add input box
+                $(wrapper).append(`<div class="row mt-3"><div class="col-md-5"> <label class="form-label">To</label><input type="text" name="field[to][]" class="form-control"  placeholder="To" required><div class="invalid-feedback"> Please enter field to. </div></div><div class="col-md-5"> <label class="form-label">From</label><input type="text" name="field[from][]" required class="form-control"  placeholder="From"><div class="invalid-feedback"> Please enter field from. </div></div><div class="col-md-2 mt-1"><a href="#" class="delete btn btn-label-danger mt-4"><i class="bx bx-x"></i><span class="align-middle">Delete</span></a></div></div>`); //add input box
 
             } else {
                 alert('You Reached the limits')
@@ -119,7 +118,7 @@
             e.preventDefault();
             if (x1 < max_fields) {
                 x1++;
-                $(wrapper1).append(`<div class="row mt-3"><div class="col-md-5"> <label class="form-label">Label</label><input type="text" name="field1[name][]" class="form-control"  placeholder="Label" required><div class="invalid-feedback"> Please enter field name. </div></div><div class="col-md-5"> <label class="form-label">Value</label><input type="text" name="field1[value][]" required class="form-control"  placeholder="Value"><div class="invalid-feedback"> Please enter field value. </div></div><div class="col-md-2 mt-1"><a href="#" class="delete btn btn-label-danger mt-4"><i class="bx bx-x"></i><span class="align-middle">Delete</span></a></div></div>`); //add input box
+                $(wrapper1).append(`<div class="row mt-3"><div class="col-md-5"> <label class="form-label">To</label><input type="text" name="field1[to][]" class="form-control"  placeholder="To" required><div class="invalid-feedback"> Please enter field to. </div></div><div class="col-md-5"> <label class="form-label">From</label><input type="text" name="field1[from][]" required class="form-control"  placeholder="From"><div class="invalid-feedback"> Please enter field from. </div></div><div class="col-md-2 mt-1"><a href="#" class="delete btn btn-label-danger mt-4"><i class="bx bx-x"></i><span class="align-middle">Delete</span></a></div></div>`); //add input box
             } else {
                 alert('You Reached the limits')
             }

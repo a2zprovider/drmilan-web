@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Str;
@@ -17,6 +18,10 @@ class CategoryController extends Controller
             $data = Category::select('*');
             return Datatables::of($data)
                 ->addIndexColumn()
+                ->addColumn('doctor_count', function ($row) {
+                    $doctors_count = Doctor::where('category_id', $row->id)->count();
+                    return $doctors_count;
+                })
                 ->addColumn('action', function ($row) {
                     $btn = '<a class="edit btn btn-primary btn-sm" href="' . route('admin.category.edit', $row->id) . '"> <i class="fas fa-edit"></i> Edit</a> <a href="#" class="delete btn btn-danger btn-sm" onclick="handelDelete(' . $row->id . ');return false;"><i class="fas fa-trash"></i></div>';
                     return $btn;

@@ -18,11 +18,8 @@ class PageController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    if ($row->type == 'home') {
-                        $btn = '<a class="edit btn btn-primary btn-sm" href="' . route('admin.page.edit', $row->id) . '"> <i class="fas fa-edit"></i> Edit</a>';
-                    } else {
-                        $btn = '<a class="edit btn btn-primary btn-sm" href="' . route('admin.page.edit', $row->id) . '"> <i class="fas fa-edit"></i> Edit</a> <a href="#" class="delete btn btn-danger btn-sm" onclick="handelDelete(' . $row->id . ');return false;"><i class="fas fa-trash"></i></div>';
-                    }
+                    // $btn = '<a class="edit btn btn-primary btn-sm" href="' . route('admin.page.edit', $row->id) . '"> <i class="fas fa-edit"></i> Edit</a> <a href="#" class="delete btn btn-danger btn-sm" onclick="handelDelete(' . $row->id . ');return false;"><i class="fas fa-trash"></i></div>';
+                    $btn = '<a class="edit btn btn-primary btn-sm" href="' . route('admin.page.edit', $row->id) . '"> <i class="fas fa-edit"></i> Edit</a>';
 
                     return $btn;
                 })

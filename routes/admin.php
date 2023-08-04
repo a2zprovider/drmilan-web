@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth:admin'], 'namespace' => 'admin', 'as' => 'a
 
     Route::post('/newsletter/deleteAll', 'InquiryController@deleteAll')->name('newsletter.deleteAll');
     Route::post('/inquiry/deleteAll', 'InquiryController@deleteAll')->name('inquiry.deleteAll');
+    Route::post('/appointment/deleteAll', 'AppointmentController@deleteAll')->name('appointment.deleteAll');
     Route::post('/doctor/deleteAll', 'DoctorController@deleteAll')->name('doctor.deleteAll');
     Route::post('/notification/deleteAll', 'NotificationController@deleteAll')->name('notification.deleteAll');
     Route::post('/faq/deleteAll', 'FaqController@deleteAll')->name('faq.deleteAll');
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['auth:admin'], 'namespace' => 'admin', 'as' => 'a
         'notification' => 'NotificationController',
         'faq' => 'FaqController',
         'inquiry' => 'InquiryController',
+        'appointment' => 'AppointmentController',
     ]);
 
     Route::get('/newsletter', 'InquiryController@newsletter')->name('newsletter.index');

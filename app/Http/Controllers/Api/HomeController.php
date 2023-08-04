@@ -9,6 +9,7 @@ use App\Models\Doctor;
 use App\Models\Event;
 use App\Models\Faq;
 use App\Models\Inquiry;
+use App\Models\Lab;
 use App\Models\Medicine;
 use App\Models\Notification;
 use App\Models\Review;
@@ -292,6 +293,11 @@ class HomeController extends Controller
 
             $user = User::find(auth()->user()->id);
             $user->update($input);
+            if ($user->role == 'doctor') {
+                $doctor = Doctor::where('user_id', $user->id)->first();
+                $doctor->name = $request->name;
+                $doctor->save();
+            }
 
             $re = [
                 'status'    => true,
@@ -341,6 +347,21 @@ class HomeController extends Controller
                 'data'      => $appointment,
             ];
         }
+        return response()->json($re);
+    }
+
+    public function labs(Request $request)
+    {
+        $query = Lab::latest();
+        $labs = $query->get();
+
+        $data = [
+            'labs' => $labs,
+        ];
+        $re = [
+            'status'    => true,
+            'data'      => $data,
+        ];
         return response()->json($re);
     }
 }

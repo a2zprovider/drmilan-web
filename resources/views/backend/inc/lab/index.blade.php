@@ -78,9 +78,9 @@
                     <tr>
                         <th></th>
                         <th>No</th>
-                        <th>Title</th>
-                        <th>Date</th>
-                        <th>Time</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
                         <th>Address</th>
                         <th width="100px">Action</th>
                     </tr>
@@ -135,16 +135,16 @@
                     name: 'id',
                 },
                 {
-                    data: 'title',
-                    name: 'title'
+                    data: 'name',
+                    name: 'name'
                 },
                 {
-                    data: 'date',
-                    name: 'date'
+                    data: 'mobile',
+                    name: 'mobile'
                 },
                 {
-                    data: 'time',
-                    name: 'time'
+                    data: 'email',
+                    name: 'email'
                 },
                 {
                     data: 'address',

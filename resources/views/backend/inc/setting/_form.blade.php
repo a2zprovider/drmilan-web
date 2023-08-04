@@ -45,27 +45,9 @@
                         <div class="invalid-feedback"> Please enter mobile. </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        {{ Form::label('mobile2', 'Mobile (2nd)',['class' => 'form-label']) }}
-                        {{ Form::tel('mobile2', '', ['class' => 'form-control', 'placeholder'=>'Mobile', 'id'=>'mobile2'] )}}
-                        <div class="invalid-feedback"> Please enter mobile. </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
                         {{ Form::label('email', 'Email',['class' => 'form-label']) }}
                         {{ Form::email('email', '', ['class' => 'form-control', 'placeholder'=>'Email', 'id'=>'email'] )}}
                         <div class="invalid-feedback"> Please enter email. </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        {{ Form::label('map_url', 'Map Url',['class' => 'form-label']) }}
-                        {{ Form::text('map_url', '', ['class' => 'form-control', 'placeholder'=>'Map Url', 'id'=>'map_url'] )}}
-                        <div class="invalid-feedback"> Please enter map url. </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        {{ Form::label('address', 'Address',['class' => 'form-label']) }}
-                        {{ Form::textarea('address','', ['class'=>'form-control', 'placeholder'=>'Address', 'rows'=>'3' ,'id'=>'address']) }}
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        {{ Form::label('map', 'Map',['class' => 'form-label']) }}
-                        {{ Form::textarea('map','', ['class'=>'form-control', 'placeholder'=>'Map', 'rows'=>'3' ,'id'=>'map']) }}
                     </div>
                     <div class="col-md-6 mb-3">
                         {{ Form::label('android_url', 'Android App Url',['class' => 'form-label']) }}
@@ -122,26 +104,6 @@
     </div>
 </div>
 
-
-<div class="row mt-4">
-    <div class="col-md">
-        <div class="card">
-            <div class="card-body">
-                <div class="row g-3">
-                    <div class="col-12">
-                        <h6 class="fw-semibold">Advanced Setting</h6>
-                        <hr class="mt-0" />
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        {{ Form::label('script', 'Script',['class' => 'form-label']) }}
-                        {{ Form::textarea('script','', ['class'=>'form-control', 'placeholder'=>'Insert script code here', 'rows'=>'3' ,'id'=>'script']) }}
-                        <div class="invalid-feedback"> Please enter script. </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @php
 $social_detail = json_decode($setting->social_detail);
 @endphp

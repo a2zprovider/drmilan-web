@@ -76,7 +76,7 @@ class DoctorController extends Controller
         $record           = new Doctor;
         $input            = $request->except('_token', 'password');
 
-        $input['field'] = $request->field ? json_encode($request->field) : '{"name":[],"value":[]}';
+        $input['field'] = $request->field ? json_encode($request->field) : '{"to":[],"from":[]}';
 
         $record->fill($input);
 

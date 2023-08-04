@@ -44,4 +44,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/appointment/medicine', 'HomeController@medicine');
     Route::get('/appointments', 'HomeController@appointments');
     Route::get('/events', 'HomeController@events');
+    Route::get('/labs', 'HomeController@labs');
 });

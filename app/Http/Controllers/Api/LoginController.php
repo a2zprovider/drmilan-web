@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,10 @@ class LoginController extends Controller
 
                             $user->update($input);
                             $token = $user->createToken('drmilap')->plainTextToken;
+                            if ($user->role == 'doctor') {
+                                $doctor = Doctor::where('user_id', $user->id)->first();
+                                $user->doctor = $doctor;
+                            }
                             $re = [
                                 'status'    => true,
                                 'message'   => 'Account Login successfully.',
@@ -54,7 +59,8 @@ class LoginController extends Controller
                             ];
                         }
                     } else {
-                        $otp = \random_int(100000, 999999);
+                        // $otp = \random_int(100000, 999999);
+                        $otp = 123456;
                         $user->otp = $otp;
                         $user->save();
 
@@ -82,7 +88,8 @@ class LoginController extends Controller
                 $user = new User();
                 $user->fill($input);
 
-                $otp = \random_int(100000, 999999);
+                // $otp = \random_int(100000, 999999);
+                $otp = 123456;
                 $user->otp = $otp;
                 $user->save();
 

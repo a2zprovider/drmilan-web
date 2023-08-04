@@ -29,7 +29,7 @@
                         <h6 class="fw-semibold">Basic Details</h6>
                         <hr class="mt-0" />
                     </div>
-                    <div class="col-md-12 mb-3">
+                    <div class="col-md-6 mb-3">
                         {{ Form::label('title', 'Title',['class' => 'form-label']) }}
                         {{ Form::text('title', '', ['class' => 'form-control bootstrap-maxlength-example', 'placeholder'=>'Title', 'id'=>'title', 'maxlength'=>'70', 'required'] )}}
                         <div class="invalid-feedback"> Please enter title. </div>

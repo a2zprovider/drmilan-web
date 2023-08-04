@@ -17,15 +17,21 @@ class MedicineController extends Controller
             $data = Medicine::select('*');
             return Datatables::of($data)
                 ->addIndexColumn()
+                ->addColumn('name', function ($row) {
+                    return $row->appointment->name;
+                })
+                ->addColumn('mobile', function ($row) {
+                    return $row->appointment->mobile;
+                })
                 ->addColumn('action', function ($row) {
-                    if ($row->type == 'home') {
-                        $btn = '<a class="edit btn btn-primary btn-sm" href="' . route('admin.medicine.edit', $row->id) . '"> <i class="fas fa-edit"></i> Edit</a>';
-                    } else {
-                        $btn = '<a class="edit btn btn-primary btn-sm" href="' . route('admin.medicine.edit', $row->id) . '"> <i class="fas fa-edit"></i> Edit</a> <a href="#" class="delete btn btn-danger btn-sm" onclick="handelDelete(' . $row->id . ');return false;"><i class="fas fa-trash"></i></div>';
-                    }
+                    $btn = '<a href="#" class="delete btn btn-danger btn-sm" onclick="handelDelete(' . $row->id . ');return false;"><i class="fas fa-trash"></i></div>';
                     return $btn;
                 })
-                ->rawColumns(['action'])
+                ->addColumn('image', function ($row) {
+                    $btn = '<img src="images/medicine/' . $row->image . '" width="40" height="40" style="object-fit:contain;">';
+                    return $btn;
+                })
+                ->rawColumns(['action', 'image'])
                 ->make(true);
         }
 

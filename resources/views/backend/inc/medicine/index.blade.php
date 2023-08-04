@@ -44,7 +44,8 @@
                 </h4>
                 <div>
                     <div class="btn-danger btn" id="delete_record" style="margin-right: 20px;"> Delete </div>
-                    <a href="{{ route('admin.medicine.create') }}" class="btn-primary btn text-white"> Add </a>
+                    
+                    <!-- <a href="{{ route('admin.medicine.create') }}" class="btn-primary btn text-white"> Add </a> -->
                 </div>
             </div>
         </div>
@@ -80,8 +81,9 @@
                         <th>No</th>
                         <th>Name</th>
                         <th>Mobile</th>
-                        <th>Email</th>
                         <th>Address</th>
+                        <th>Message</th>
+                        <th>Image</th>
                         <th width="100px">Action</th>
                     </tr>
                 </thead>
@@ -97,7 +99,6 @@
 
 @endsection
 @section('script')
-
 
 <!-- Data Tables -->
 <script src="{{ url('admin/vendor/libs/datatables/jquery.dataTables.js') }}"></script>
@@ -143,12 +144,18 @@
                     name: 'mobile'
                 },
                 {
-                    data: 'email',
-                    name: 'email'
-                },
-                {
                     data: 'address',
                     name: 'address'
+                },
+                {
+                    data: 'message',
+                    name: 'message'
+                },
+                {
+                    data: 'image',
+                    name: 'image',
+                    orderable: false,
+                    searchable: false
                 },
                 {
                     data: 'action',

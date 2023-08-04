@@ -27,6 +27,8 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->longText('field')->nullable();
+            $table->string('working_time')->nullable();
+            $table->string('fees')->nullable();
             $table->text('short_description')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();

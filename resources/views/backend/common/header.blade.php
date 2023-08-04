@@ -100,23 +100,22 @@ $setting = App\Models\Setting::first();
                     <li class="menu-header small text-uppercase">
                         <span class="menu-header-text">General</span>
                     </li>
-                    
                     <li class="menu-item @if(Request::routeIs('admin.page.index')||Request::routeIs('admin.page.create')||Request::routeIs('admin.page.edit')) active @endif">
                         <a href="{{ route('admin.page.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-copy"></i>
                             <div>Pages</div>
                         </a>
                     </li>     
-                    <li class="menu-item @if(Request::routeIs('admin.slider.index')||Request::routeIs('admin.slider.create')||Request::routeIs('admin.slider.edit')) active @endif">
+                    <!--<li class="menu-item @if(Request::routeIs('admin.slider.index')||Request::routeIs('admin.slider.create')||Request::routeIs('admin.slider.edit')) active @endif">
                         <a href="{{ route('admin.slider.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-copy"></i>
                             <div>Slider</div>
                         </a>
-                    </li>   
+                    </li>    -->
                     <li class="menu-item @if(Request::routeIs('admin.review.index')||Request::routeIs('admin.review.create')||Request::routeIs('admin.review.edit')) active @endif">
                         <a href="{{ route('admin.review.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-copy"></i>
-                            <div>Review</div>
+                            <div>Reviews</div>
                         </a>
                     </li>  
                     <li class="menu-header small text-uppercase">
@@ -140,7 +139,7 @@ $setting = App\Models\Setting::first();
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <!-- <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-copy"></i>
                             <div>Blog</div>
@@ -162,7 +161,7 @@ $setting = App\Models\Setting::first();
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="menu-item @if(Request::routeIs('admin.medicine.index')) active @endif">
                         <a href="{{ route('admin.medicine.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-copy"></i>
@@ -181,12 +180,12 @@ $setting = App\Models\Setting::first();
                             <div>Events</div>
                         </a>
                     </li> 
-                    <li class="menu-item @if(Request::routeIs('admin.notification.index')) active @endif">
+                    <!-- <li class="menu-item @if(Request::routeIs('admin.notification.index')) active @endif">
                         <a href="{{ route('admin.notification.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-copy"></i>
                             <div>Notification</div>
                         </a>
-                    </li>   
+                    </li>    -->
                     <li class="menu-item @if(Request::routeIs('admin.faq.index')) active @endif">
                         <a href="{{ route('admin.faq.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-copy"></i>
@@ -199,9 +198,15 @@ $setting = App\Models\Setting::first();
                     <li class="menu-item @if(Request::routeIs('admin.inquiry.index')) active @endif">
                         <a href="{{ route('admin.inquiry.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-copy"></i>
-                            <div>Enquiry</div>
+                            <div>Help or Suggestions</div>
                         </a>
-                    </li>   
+                    </li>
+                    <li class="menu-item @if(Request::routeIs('admin.appointment.index')) active @endif">
+                        <a href="{{ route('admin.appointment.index') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-copy"></i>
+                            <div>Appointments</div>
+                        </a>
+                    </li>  
                     
                     <!-- <li class="menu-item @if(Request::routeIs('admin.newsletter.index')) active @endif">
                         <a href="{{ route('admin.newsletter.index') }}" class="menu-link">

@@ -43,8 +43,8 @@
                     <span class="text-muted fw-light">Page /</span> View
                 </h4>
                 <div>
-                    <div class="btn-danger btn" id="delete_record" style="margin-right: 20px;"> Delete </div>
-                    <a href="{{ route('admin.page.create') }}" class="btn-primary btn text-white"> Add </a>
+                    <!-- <div class="btn-danger btn" id="delete_record" style="margin-right: 20px;"> Delete </div> -->
+                    <!-- <a href="{{ route('admin.page.create') }}" class="btn-primary btn text-white"> Add </a> -->
                 </div>
             </div>
         </div>

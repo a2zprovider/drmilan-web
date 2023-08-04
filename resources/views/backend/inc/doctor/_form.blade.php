@@ -49,6 +49,16 @@
                         <div class="invalid-feedback"> Please enter email. </div>
                     </div>
                     <div class="col-md-6 mb-3">
+                        {{ Form::label('fees', 'Fees',['class' => 'form-label']) }}
+                        {{ Form::text('fees', '', ['class' => 'form-control', 'placeholder'=>'Fees', 'id'=>'fees'] )}}
+                        <div class="invalid-feedback"> Please enter fees. </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ Form::label('working_time', 'Working Days & Time',['class' => 'form-label']) }}
+                        {{ Form::text('working_time', '', ['class' => 'form-control', 'placeholder'=>'Working Days & Time', 'id'=>'working_time'] )}}
+                        <div class="invalid-feedback"> Please enter working time. </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
                         {{ Form::label('address', 'Address',['class' => 'form-label']) }}
                         {{ Form::text('address', '', ['class' => 'form-control', 'placeholder'=>'Address', 'id'=>'address'] )}}
                         <div class="invalid-feedback"> Please enter address. </div>
@@ -71,31 +81,39 @@
 <div class="mb-4 mt-4">
     <div class="nav-align-top">
         <ul class="nav nav-tabs" role="tablist">
+            <!-- <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#form-tabs-description" role="tab" aria-selected="false">Description</a>
+            </li> -->
             <li class="nav-item">
-                <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#form-tabs-description" role="tab" aria-selected="false">Description</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#form-tabs-specification" role="tab" aria-selected="true">Specification</a>
+                <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#form-tabs-specification" role="tab" aria-selected="true">Time Slots</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" data-bs-target="#form-tabs-image" role="tab" aria-selected="false">Image</a>
             </li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane fade" id="form-tabs-specification" role="tabpanel">
+            <!-- <div class="tab-pane fade" id="form-tabs-description" role="tabpanel">
+                <div class="row g-3">
+                    <div class="col-md-12 mb-3">
+                        {{ Form::label('description', 'Description',['class' => 'form-label']) }}
+                        {{ Form::textarea('description','', ['class'=>'form-control editor', 'placeholder'=>'Description', 'rows'=>'10' ,'id'=>'description']) }}
+                    </div>
+                </div>
+            </div> -->
+            <div class="tab-pane fade active show" id="form-tabs-specification" role="tabpanel">
                 @if(!@$doctor->id)
                 <div class="mt-3">
                     <div class="container1">
                         <div class="row mt-3">
                             <div class="col-md-5">
-                                <label class="form-label">Label</label>
-                                <input type="text" name="field[name][]" class="form-control" placeholder="Label">
-                                <div class="invalid-feedback"> Please enter field name. </div>
+                                <label class="form-label">To</label>
+                                <input type="text" name="field[to][]" class="form-control" placeholder="To">
+                                <div class="invalid-feedback"> Please enter field to. </div>
                             </div>
                             <div class="col-md-5">
-                                <label class="form-label">Value</label>
-                                <input type="text" name="field[value][]" class="form-control" placeholder="Value">
-                                <div class="invalid-feedback"> Please enter field value. </div>
+                                <label class="form-label">From</label>
+                                <input type="text" name="field[from][]" class="form-control" placeholder="from">
+                                <div class="invalid-feedback"> Please enter field from. </div>
                             </div>
                             <div class="col-md-2 mt-1">
                                 <a href="#" class="delete btn btn-label-danger mt-4">
@@ -121,21 +139,21 @@
                         }
                         $fields = $doctor_field;
                         @endphp
-                        <div class="add_form_field btn-primary btn" data-id="{{ count($fields->name) }}">Add &nbsp;
+                        <div class="add_form_field btn-primary btn" data-id="{{ count($fields->to) }}">Add &nbsp;
                             <span style="font-size:16px; font-weight:bold;">+ </span>
                         </div>
                         <hr>
-                        @foreach($fields->name as $key => $field)
+                        @foreach($fields->to as $key => $field)
                         <div class="row mt-3">
                             <div class="col-md-5">
-                                <label class="form-label">Label</label>
-                                <input type="text" name="field[name][]" value="{{ $field }}" class="form-control" placeholder="Label" required>
-                                <div class="invalid-feedback"> Please enter field name. </div>
+                                <label class="form-label">To</label>
+                                <input type="text" name="field[to][]" value="{{ $field }}" class="form-control" placeholder="From" required>
+                                <div class="invalid-feedback"> Please enter field to. </div>
                             </div>
                             <div class="col-md-5">
-                                <label class="form-label">Value</label>
-                                <input type="text" name="field[value][]" value="{{ $fields->value[$key] }}" class="form-control" placeholder="Value" required>
-                                <div class="invalid-feedback"> Please enter field value. </div>
+                                <label class="form-label">From</label>
+                                <input type="text" name="field[from][]" value="{{ $fields->from[$key] }}" class="form-control" placeholder="To" required>
+                                <div class="invalid-feedback"> Please enter field from. </div>
                             </div>
                             <div class="col-md-2 mt-1">
                                 <a href="#" class="delete btn btn-label-danger mt-4">
@@ -148,14 +166,6 @@
                     </div>
                 </div>
                 @endif
-            </div>
-            <div class="tab-pane fade active show" id="form-tabs-description" role="tabpanel">
-                <div class="row g-3">
-                    <div class="col-md-12 mb-3">
-                        {{ Form::label('description', 'Description',['class' => 'form-label']) }}
-                        {{ Form::textarea('description','', ['class'=>'form-control editor', 'placeholder'=>'Description', 'rows'=>'10' ,'id'=>'description']) }}
-                    </div>
-                </div>
             </div>
             <div class="tab-pane fade" id="form-tabs-image" role="tabpanel">
                 <div class="row g-3">

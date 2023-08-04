@@ -44,7 +44,7 @@
                 </h4>
                 <div>
                     <div class="btn-danger btn" id="delete_record" style="margin-right: 20px;"> Delete </div>
-                    <a href="{{ route('admin.review.create') }}" class="btn-primary btn text-white"> Add </a>
+                    <!-- <a href="{{ route('admin.review.create') }}" class="btn-primary btn text-white"> Add </a> -->
                 </div>
             </div>
         </div>
@@ -79,8 +79,7 @@
                         <th></th>
                         <th>No</th>
                         <th>Name</th>
-                        <th>Position</th>
-                        <th>Link</th>
+                        <th>Rating</th>
                         <th>Message</th>
                         <th width="100px">Action</th>
                     </tr>
@@ -139,12 +138,8 @@
                     name: 'name'
                 },
                 {
-                    data: 'position',
-                    name: 'position'
-                },
-                {
-                    data: 'link',
-                    name: 'link'
+                    data: 'rating',
+                    name: 'rating'
                 },
                 {
                     data: 'message',
