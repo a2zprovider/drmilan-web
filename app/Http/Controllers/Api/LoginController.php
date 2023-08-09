@@ -33,7 +33,6 @@ class LoginController extends Controller
                             $user = Auth::user();
 
                             $input = [
-                                'name'          => @request('name') ? request('name') : request('mobile'),
                                 'device_type'   => request('device_type') && request('device_type') != '' ? request('device_type') : null,
                                 'device_id'     => request('device_id') && request('device_id') != '' ? request('device_id') : null,
                                 'fcm_id'        => request('fcm_id') && request('fcm_id') != '' ? request('fcm_id') : null,
@@ -80,7 +79,7 @@ class LoginController extends Controller
                 }
             } else {
                 $input = [
-                    'name' => $request->name ? $request->name : $request->mobile,
+                    'name' => $request->name,
                     'mobile' => $request->mobile,
                     'role'  => 'user',
                 ];

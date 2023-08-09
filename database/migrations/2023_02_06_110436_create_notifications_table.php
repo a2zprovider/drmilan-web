@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug')->unique();
             $table->string('image')->nullable();
-            $table->text('short_description')->nullable();
-            $table->longText('description')->nullable();
+            $table->text('description')->nullable();
+            $table->enum('type', ['all', 'user', 'doctor'])->default('all');
+            $table->enum('status', ['true', 'false'])->default('false');
+            $table->text('user_id')->nullable();
             $table->timestamps();
         });
     }

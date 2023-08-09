@@ -14,8 +14,17 @@ class Doctor extends Model
         'updated_at',
     ];
 
-    protected $appends = ['avg_rating'];
+    protected $appends = ['avg_rating', 'image_url'];
     protected $with = ['category'];
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->image) {
+            return asset('images/doctor/' . $this->image);
+        } else {
+            return null;
+        }
+    }
 
     public function category()
     {

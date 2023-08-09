@@ -106,14 +106,14 @@
                     <div class="container1">
                         <div class="row mt-3">
                             <div class="col-md-5">
-                                <label class="form-label">To</label>
-                                <input type="text" name="field[to][]" class="form-control" placeholder="To">
-                                <div class="invalid-feedback"> Please enter field to. </div>
-                            </div>
-                            <div class="col-md-5">
                                 <label class="form-label">From</label>
                                 <input type="text" name="field[from][]" class="form-control" placeholder="from">
                                 <div class="invalid-feedback"> Please enter field from. </div>
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label">To</label>
+                                <input type="text" name="field[to][]" class="form-control" placeholder="To">
+                                <div class="invalid-feedback"> Please enter field to. </div>
                             </div>
                             <div class="col-md-2 mt-1">
                                 <a href="#" class="delete btn btn-label-danger mt-4">
@@ -146,14 +146,14 @@
                         @foreach($fields->to as $key => $field)
                         <div class="row mt-3">
                             <div class="col-md-5">
-                                <label class="form-label">To</label>
-                                <input type="text" name="field[to][]" value="{{ $field }}" class="form-control" placeholder="From" required>
-                                <div class="invalid-feedback"> Please enter field to. </div>
+                                <label class="form-label">From</label>
+                                <input type="text" name="field[from][]" value="{{ $fields->from[$key] }}" class="form-control" placeholder="From" required>
+                                <div class="invalid-feedback"> Please enter field from. </div>
                             </div>
                             <div class="col-md-5">
-                                <label class="form-label">From</label>
-                                <input type="text" name="field[from][]" value="{{ $fields->from[$key] }}" class="form-control" placeholder="To" required>
-                                <div class="invalid-feedback"> Please enter field from. </div>
+                                <label class="form-label">To</label>
+                                <input type="text" name="field[to][]" value="{{ $field }}" class="form-control" placeholder="To" required>
+                                <div class="invalid-feedback"> Please enter field to. </div>
                             </div>
                             <div class="col-md-2 mt-1">
                                 <a href="#" class="delete btn btn-label-danger mt-4">

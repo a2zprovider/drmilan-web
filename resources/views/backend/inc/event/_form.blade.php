@@ -51,7 +51,7 @@
                     </div>
                     <div class="col-md-12 mb-3">
                         {{ Form::label('description', 'Description',['class' => 'form-label']) }}
-                        {{ Form::textarea('description','', ['class'=>'form-control', 'placeholder'=>'Description', 'rows'=>'3' ,'id'=>'Description','maxlength'=>'300' ]) }}
+                        {{ Form::textarea('description','', ['class'=>'form-control', 'placeholder'=>'Description', 'rows'=>'3' ,'id'=>'Description' ]) }}
                     </div>
                 </div>
             </div>

@@ -47,7 +47,6 @@ class NotificationController extends Controller
 
         $record           = new Notification;
         $input            = $request->except('_token');
-        $input['slug']    = $input['slug'] == '' ? Str::slug($input['title'], '-') : Str::slug($input['slug'], '-');
 
         $record->fill($input);
         if ($record->save()) {
@@ -76,7 +75,6 @@ class NotificationController extends Controller
     {
         $record     = $notification;
         $input      = $request->except('_token', '_method');
-        $input['slug']    = $input['slug'] == '' ? Str::slug($input['title'], '-') : Str::slug($input['slug'], '-');
 
         $record->fill($input);
         if ($record->save()) {
